@@ -47,7 +47,7 @@ func InitDatabase(path string) error {
 
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		err = os.Mkdir(path, 0644)
+		err = os.Mkdir(path, 0777)
 		if err != nil {
 			return err
 		}
@@ -99,7 +99,7 @@ func NewServer(id string) *Server {
 		return nil
 	}
 
-	err = ioutil.WriteFile(Path+id+".json", bytes, 0644)
+	err = ioutil.WriteFile(Path+id+".json", bytes, 0666)
 	if err != nil {
 		fmt.Println(err)
 		return nil
@@ -117,5 +117,5 @@ func (s *Server) Save() {
 		return
 	}
 
-	_ = ioutil.WriteFile(Path+s.ID+".json", bytes, 0644)
+	_ = ioutil.WriteFile(Path+s.ID+".json", bytes, 0666)
 }
