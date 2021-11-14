@@ -32,7 +32,10 @@ func main() {
 	//register commands...
 	commandHandler := dgoc.New(bot.Session)
 	dgoc.SetPrefix(bot.Config.Prefix)
-	err = commandHandler.AddCommand(&command.Help{})
+	err = commandHandler.AddCommand(
+		&command.Help{},
+		&command.Level{})
+
 	if err != nil {
 		fmt.Println(err)
 	}
